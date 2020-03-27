@@ -17,8 +17,9 @@ public class MobIA : MonoBehaviour
     private void OnEnable()
     {
         m_IsDead = false;
-        m_IsOn = true;
         m_AsFocus = false;
+        m_IsOn = false;
+        //gameObject.SetActive(m_IsOn);
     }
 
     // Update is called once per frame
@@ -44,6 +45,17 @@ public class MobIA : MonoBehaviour
             }
         }
     }
+    
+    public void MoveMob(Vector3 coordinates)
+    {
+        this.gameObject.transform.position = coordinates;
+    }
+
+    public void switchState()
+    {
+        this.m_IsOn = !this.m_IsOn;
+        //gameObject.SetActive(m_IsOn);
+    }
 
     public void InteruptFocus()
     {
@@ -60,6 +72,11 @@ public class MobIA : MonoBehaviour
     public bool IsDead()
     {
         return m_IsDead;
+    }
+
+    public void setEnnemies(List<GameObject> ennemies)
+    {
+        this.m_Ennemies = ennemies;
     }
 
     private void GetFocus()
